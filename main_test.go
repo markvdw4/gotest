@@ -18,8 +18,19 @@ func (bq fakebqclient) getDatasets() string {
 
 func TestEnsureDataset(t *testing.T) {
 	bq := BQClient{
-		Bq: fakebqclient{},
+		fakebqclient{
+			client: "mooclient", 
+			context: "moocontext",
+		},
 	}
 	datasetlist := bq.ensureDataset()
 	assert.Equal(t, "hello i am a fake list of datasets", datasetlist, "not using the mocked method")
+	bq2 := BQClient{
+		BQClientStruct{
+			client: "mooclient", 
+			context: "moocontext",
+		},
+	}
+	realdatasetlist := bq2.ensureDataset()
+	assert.Equal(t, "real list of datasets", realdatasetlist, "not using the mocked method")
 }

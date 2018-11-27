@@ -13,7 +13,7 @@ type BQClientStruct struct {
 
 // this is the structure abstraction that we actually use in our code
 type BQClient struct {
-	Bq BQClientinterface
+	BQClientinterface
 }
 
 // this is an example of a method that in real life would reach out to an external api so it would need to be mocked
@@ -23,7 +23,7 @@ func (bq BQClientStruct) getDatasets() string {
 
 func main() {
 	bq := BQClient{
-		Bq: BQClientStruct{
+		BQClientStruct{
 			client: "mooclient", 
 			context: "moocontext",
 		},
@@ -33,6 +33,6 @@ func main() {
 
 // this is an example of a method that we want to test that calls a method that calls an external api (CALLS!)
 func (u *BQClient) ensureDataset() string {
-	return u.Bq.getDatasets()
+	return u.getDatasets()
 }
 
