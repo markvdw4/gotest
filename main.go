@@ -1,6 +1,3 @@
-// _Interfaces_ are named collections of method
-// signatures.
-
 package main
 
 // this is the interface type that will need to be mocked in tests
